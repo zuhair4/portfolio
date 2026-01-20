@@ -4,7 +4,6 @@ const education = {
   field: 'Computer Science Engineering',
   duration: '2018 - 2022',
   cgpa: '8.09',
-  achievement: 'Recognized with two Spot Awards within the first year for building dynamic, scalable API-driven solutions'
 }
 
 export default function Education() {
@@ -17,7 +16,6 @@ export default function Education() {
           <p className="degree">{education.degree} in {education.field}</p>
           <p className="duration">{education.duration}</p>
           <p className="cgpa">CGPA: {education.cgpa}</p>
-          <p className="achievement"><strong>Achievement:</strong> {education.achievement}</p>
         </div>
       </div>
     </section>
