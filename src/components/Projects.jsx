@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import { useInView } from '../hooks/useInView'
 import cafeImage from '../../assets/Cafe.png'
 import ivaccinateImage from '../../assets/ivaccinate.png'
 import hashedinImage from '../../assets/hashedin.png'
@@ -33,6 +34,7 @@ const projectsData = [
 
 export default function Projects() {
   const [currentSlide, setCurrentSlide] = useState(0)
+  const [ref, isInView] = useInView()
 
   const nextSlide = () => {
     setCurrentSlide((prev) => (prev + 1) % projectsData.length)
@@ -43,7 +45,7 @@ export default function Projects() {
   }
 
   return (
-    <section id="projects" className="projects-section">
+    <section id="projects" className={`projects-section ${isInView ? 'in-view' : ''}`} ref={ref}>
       <div className="container">
         <h2>Featured Projects</h2>
         <p className="projects-subtitle">Check out some of my recent work</p>

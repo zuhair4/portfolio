@@ -1,6 +1,10 @@
+import { useInView } from '../hooks/useInView'
+
 export default function About() {
+  const [ref, isInView] = useInView()
+
   return (
-    <section id="about" className="about">
+    <section id="about" className={`about ${isInView ? 'in-view' : ''}`} ref={ref}>
       <div className="container">
         <h2>About Me</h2>
         <p>

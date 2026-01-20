@@ -14,7 +14,7 @@ export default function Navbar() {
   return (
     <nav className="navbar">
       <div className="nav-container">
-        <div className="logo">Portfolio</div>
+        <div className="logo">"DEV"</div>
         
         <button className="hamburger" onClick={toggleMenu}>
           <span></span>

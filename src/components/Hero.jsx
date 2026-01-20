@@ -9,13 +9,10 @@ export default function Hero() {
           <p className="hero-subtitle">Frontend Engineer | Full-Stack Developer | AI Integration Specialist</p>
           <p className="hero-description">Building scalable web platforms, optimizing performance, and integrating AI-powered solutions for enterprise applications</p>
           <div className="hero-buttons">
-            <a href="#experience" className="btn btn-primary">View My Work</a>
+            <a href="#projects" className="btn btn-primary">View My Work</a>
             <a href="#contact" className="btn btn-secondary">Get In Touch</a>
           </div>
           <div className="hero-contact">
-            <a href="mailto:syedabbas6575@gmail.com">syedabbas6575@gmail.com</a> | 
-            <a href="tel:+917011306929"> +91 7011306929</a> | 
-            📍 Noida, India
           </div>
         </div>
         <div className="hero-image">

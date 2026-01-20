@@ -1,3 +1,5 @@
+import { useInView } from '../hooks/useInView'
+
 const workExperience = [
   {
     id: 1,
@@ -30,8 +32,10 @@ const workExperience = [
 ]
 
 export default function Experience() {
+  const [ref, isInView] = useInView()
+
   return (
-    <section id="experience" className="experience">
+    <section id="experience" className={`experience ${isInView ? 'in-view' : ''}`} ref={ref}>
       <div className="container">
         <h2>Work Experience</h2>
         <div className="timeline">

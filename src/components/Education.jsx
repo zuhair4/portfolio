@@ -1,3 +1,5 @@
+import { useInView } from '../hooks/useInView'
+
 const education = {
   school: 'Jamia Hamdard University, New Delhi',
   degree: 'Bachelor of Technology (CSE)',
@@ -7,8 +9,10 @@ const education = {
 }
 
 export default function Education() {
+  const [ref, isInView] = useInView()
+
   return (
-    <section className="education">
+    <section className={`education ${isInView ? 'in-view' : ''}`} ref={ref}>
       <div className="container">
         <h2>Education</h2>
         <div className="education-card">

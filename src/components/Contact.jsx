@@ -1,9 +1,11 @@
 import { useState } from 'react'
+import { useInView } from '../hooks/useInView'
 import LinkedInImg from '../../assets/Linkedin.png'
 import LeetcodeImg from '../../assets/Leetcode.png'
 
 export default function Contact() {
   const [currentSlide, setCurrentSlide] = useState(0)
+  const [ref, isInView] = useInView()
 
   const contactCards = [
     {
@@ -41,7 +43,7 @@ export default function Contact() {
   }
 
   return (
-    <section id="contact" className="contact">
+    <section id="contact" className={`contact ${isInView ? 'in-view' : ''}`} ref={ref}>
       <div className="container">
         <h2>Let's Connect</h2>
         <p>I'm always interested in hearing about new opportunities and collaborating on exciting projects.</p>
