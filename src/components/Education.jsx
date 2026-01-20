@@ -8,6 +8,7 @@ const education = {
   cgpa: '8.09',
 }
 
+
 export default function Education() {
   const [ref, isInView] = useInView()
 
