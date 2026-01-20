@@ -2,7 +2,7 @@ import { useState } from 'react'
 import { useInView } from '../hooks/useInView'
 import cafeImage from '../../assets/Cafe.png'
 import ivaccinateImage from '../../assets/ivaccinate.png'
-import hashedinImage from '../../assets/hashedin.png'
+import hashedinImage from '../../assets/Hashedin.png'
 
 const projectsData = [
   {
