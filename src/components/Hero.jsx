@@ -6,7 +6,7 @@ export default function Hero() {
       <div className="hero-content">
         <div className="hero-text">
           <h1>Zuhair Abbas</h1>
-          <p className="hero-subtitle">Frontend & Platform Engineer | Full-Stack Developer | AI Integration Specialist</p>
+          <p className="hero-subtitle">Frontend Engineer | Full-Stack Developer | AI Integration Specialist</p>
           <p className="hero-description">Building scalable web platforms, optimizing performance, and integrating AI-powered solutions for enterprise applications</p>
           <div className="hero-buttons">
             <a href="#experience" className="btn btn-primary">View My Work</a>
