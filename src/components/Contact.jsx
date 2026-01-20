@@ -4,6 +4,7 @@ import LinkedInImg from '../../assets/Linkedin.png'
 import LeetcodeImg from '../../assets/Leetcode.png'
 
 export default function Contact() {
+  
   const [currentSlide, setCurrentSlide] = useState(0)
   const [ref, isInView] = useInView()
 
