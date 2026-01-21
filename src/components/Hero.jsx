@@ -16,7 +16,9 @@ export default function Hero() {
           </div>
         </div>
         <div className="hero-image">
-          <img src={profileImage} alt="Zuhair Abbas" />
+          <div className="blob-frame">
+            <img src={profileImage} alt="Zuhair Abbas" />
+          </div>
         </div>
       </div>
     </section>

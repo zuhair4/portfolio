@@ -16,16 +16,6 @@ const skillCategories = [
     color: '#f093fb',
     skills: ['OpenAI APIs', 'Claude APIs', 'Prompt Engineering', 'AI Agents', 'Vibe Coding', 'Token Management']
   },
-//   {
-//     category: 'Tools & DevOps',
-//     color: '#4facfe',
-//     skills: ['CI/CD Pipelines', 'Git', 'OAuth 2.0', 'Web Performance Optimization']
-//   },
-//   {
-//     category: 'Visualization & Styling',
-//     color: '#43e97b',
-//     skills: ['D3.js', 'chartJs']
-//   }
 ]
 
 export default function Skills() {
