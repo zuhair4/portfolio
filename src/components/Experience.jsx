@@ -14,7 +14,7 @@ const workExperience = [
       'Implemented custom theming and white-label UI frameworks for enterprise clients including Google and Amazon',
       'Integrated ServiceNow ticketing via REST APIs with AI-powered agents to automate 30–35% of workflows'
     ],
-    tags: ['Next.js', 'React', 'Micro Frontend Architecture', 'TypeScript', 'AI Agents']
+    tags: ['Angular ', 'React ', 'Micro Frontend Architecture ', 'TypeScript ', 'AI Agents ', 'FireBase ']
   },
   {
     id: 2,
@@ -28,7 +28,7 @@ const workExperience = [
       'Developed data visualizations using D3.js, increasing user engagement by 28%',
       'Upgraded Google Identity Services with one-tap login, improving authentication performance by 20%'
     ],
-    tags: ['Angular', 'GPT-4 APIs', 'D3.js', 'Google Identity', 'AI Integration']
+    tags: ['Angular ', 'GPT-4 APIs ', 'D3.js ', 'Google Identity ', 'AI Integration ']
   }
 ]
 
@@ -55,9 +55,9 @@ export default function Experience() {
                     <li key={idx}>{highlight}</li>
                   ))}
                 </ul>
-                <div className="project-tags">
+                <div className="experience-tags">
                   {exp.tags.map((tag, idx) => (
-                    <span key={idx} className="tag">{tag}</span>
+                    <span key={idx} className="experience-tag">{tag}</span>
                   ))}
                 </div>
               </div>

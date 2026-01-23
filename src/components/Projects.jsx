@@ -12,7 +12,7 @@ const projectsData = [
     preview: hashedinImage,
     link: 'https://hashedin.com/services#engineering-models',
     tags: ['Current Company', 'AI-Agents', 'Consulting'],
-    badge: 'Latest Development'
+    badge: '..'
   },
   {
     id: 2,

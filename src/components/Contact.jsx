@@ -58,7 +58,12 @@ export default function Contact() {
               className={`contact-card ${index === currentSlide ? 'active' : ''}`}
             >
               {card.preview ? (
+                <div className='contact-preview-wrapper'>
                 <img src={card.preview} alt={card.title} className="contact-preview" />
+                <div className='contact-overlay'>
+                  <span className='contact-link-text'>View →</span>
+                </div>
+                </div>
               ) : (
                 <div className="contact-email-preview">
                   <div className="email-icon">✉️</div>
@@ -84,7 +89,12 @@ export default function Contact() {
               className="contact-card desktop-only"
             >
               {card.preview ? (
+                <div className='contact-preview-wrapper'>
                 <img src={card.preview} alt={card.title} className="contact-preview" />
+                <div className='contact-overlay'>
+                  <span className='contact-link-text'>View →</span>
+                </div>
+                </div>
               ) : (
                 <div className="contact-email-preview">
                   <div className="email-icon">✉️</div>

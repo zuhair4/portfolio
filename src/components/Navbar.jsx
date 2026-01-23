@@ -1,7 +1,9 @@
 import { useState } from 'react'
+import { useTheme } from '../context/ThemeContext'
 
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false)
+  const { isDarkTheme, toggleTheme } = useTheme()
 
   const toggleMenu = () => {
     setIsOpen(!isOpen)
@@ -15,7 +17,11 @@ export default function Navbar() {
     <nav className="navbar">
       <div className="nav-container">
         <div className="logo">"DEV"</div>
-        
+
+        <button className="theme-toggle" onClick={toggleTheme}>
+          <span className="theme-icon"> {isDarkTheme ? '☀️' : '🌙'}</span>
+        </button>
+
         <button className="hamburger" onClick={toggleMenu}>
           <span></span>
           <span></span>
