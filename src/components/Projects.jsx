@@ -3,6 +3,7 @@ import { useInView } from '../hooks/useInView'
 import cafeImage from '../../assets/Cafe.png'
 import ivaccinateImage from '../../assets/ivaccinate.png'
 import hashedinImage from '../../assets/Hashedin.png'
+import udhaarImage from '../../assets/udhaar ss.png'
 
 const projectsData = [
   {
@@ -29,6 +30,14 @@ const projectsData = [
     preview: ivaccinateImage,
     link: 'https://zuhair4.github.io/iVaccinate/',
     tags: ['React', 'Web App', 'Healthcare']
+  },
+  {
+    id: 4,
+    title: 'Udhaar Me Sudhaar',
+    description: 'A law firm application that helps clients manage loans, track repayments, and handle related legal matters in one place.',
+    preview: udhaarImage,
+    link: 'https://zuhair4.github.io/udhaarMeSudhaar/',
+    tags: ['HTML', 'CSS', 'JavaScript', 'Finance']
   }
 ]
 
@@ -60,8 +69,8 @@ export default function Projects() {
             >
               {project.badge && <div className="project-badge">{project.badge}</div>}
               <div className="project-preview">
-                <img 
-                  src={project.preview} 
+                <img
+                  src={project.preview}
                   alt={project.title}
                   className="project-screenshot"
                 />
@@ -80,7 +89,7 @@ export default function Projects() {
               </div>
             </a>
           ))}
-          
+
           {/* Desktop Grid Layout */}
           {projectsData.map((project) => (
             <a
@@ -92,8 +101,8 @@ export default function Projects() {
             >
               {project.badge && <div className="project-badge">{project.badge}</div>}
               <div className="project-preview">
-                <img 
-                  src={project.preview} 
+                <img
+                  src={project.preview}
                   alt={project.title}
                   className="project-screenshot"
                 />
