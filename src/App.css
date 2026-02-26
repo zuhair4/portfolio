@@ -201,13 +201,13 @@
   backdrop-filter: blur(20px) saturate(180%);
   -webkit-backdrop-filter: blur(20px) saturate(180%);
   box-shadow: 0 1px 0 var(--border);
-  z-index: 100;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+  z-index: 1000;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.06);
   transition: all var(--transition-normal);
 }
 
 body.dark-theme .navbar {
-  background: rgba(10, 10, 10, 0.75);
+  background: rgba(10, 10, 10, 0.92);
   border-bottom-color: rgba(255, 255, 255, 0.06);
   box-shadow: 0 1px 0 rgba(255, 255, 255, 0.04);
 }
@@ -1757,6 +1757,16 @@ body.dark-theme .footer {
    ========================================== */
 
 @media (max-width: 768px) {
+
+  /* Fully opaque on mobile — iOS Safari backdrop-filter + sticky bug fix */
+  .navbar {
+    background: rgba(255, 255, 255, 0.98) !important;
+  }
+
+  body.dark-theme .navbar {
+    background: rgba(10, 10, 10, 0.98) !important;
+  }
+
   .hamburger {
     display: flex;
   }
