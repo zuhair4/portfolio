@@ -12,6 +12,7 @@ import {
   SiFirebase,
   SiOpenai,
 } from 'react-icons/si'
+
 import { FaBrain, FaRobot, FaLightbulb, FaCoins, FaServer } from 'react-icons/fa'
 
 const skillCategories = [
