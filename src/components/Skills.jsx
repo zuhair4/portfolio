@@ -5,7 +5,6 @@ import {
   SiReact,
   SiAngular,
   SiHtml5,
-  SiCss,
   SiNextdotjs,
   SiMongodb,
   SiPostgresql,
@@ -13,7 +12,7 @@ import {
   SiOpenai,
 } from 'react-icons/si'
 
-import { FaBrain, FaRobot, FaLightbulb, FaCoins, FaServer } from 'react-icons/fa'
+import { FaBrain, FaRobot, FaLightbulb, FaCoins, FaServer, FaCode } from 'react-icons/fa'
 
 const skillCategories = [
   {
@@ -25,7 +24,7 @@ const skillCategories = [
       { name: 'React', icon: SiReact },
       { name: 'Angular', icon: SiAngular },
       { name: 'HTML5', icon: SiHtml5 },
-      { name: 'CSS3', icon: SiCss },
+      { name: 'CSS3', icon: FaCode },
       { name: 'Next.js', icon: SiNextdotjs }
       // 'TypeScript', 'JavaScript', 'React', 'Angular', 'HTML5 & CSS3' ,'Next.js'
     ]
