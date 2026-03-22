@@ -2,6 +2,7 @@ import { useState } from 'react'
 import { useInView } from '../hooks/useInView'
 import LinkedInImg from '../../assets/Linkedin.png'
 import LeetcodeImg from '../../assets/Leetcode.png'
+import GithubImg from '../../assets/Github image.png'
 
 export default function Contact() {
   
@@ -32,6 +33,14 @@ export default function Contact() {
       type: 'leetcode',
       link: 'https://leetcode.com/u/zuhair4/',
       preview: LeetcodeImg
+    },
+    {
+      id: 4,
+      title: 'GitHub',
+      description: 'Check out my repositories',
+      type: 'github',
+      link: 'https://github.com/zuhair4',
+      preview: GithubImg
     }
   ]
 

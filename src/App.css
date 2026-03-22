@@ -1348,7 +1348,7 @@ body.dark-theme .contact p {
 
 .contact-cards {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  grid-template-columns: repeat(3, 1fr);
   gap: 2.5rem;
   max-width: 1000px;
   margin: 0 auto;
@@ -1377,6 +1377,15 @@ body.dark-theme .contact p {
 
 .contact.in-view .contact-cards .desktop-only:nth-child(6) {
   animation-delay: 0.4s;
+}
+
+.contact.in-view .contact-cards .desktop-only:nth-child(7) {
+  animation-delay: 0.5s;
+}
+
+/* GitHub card sits in the center column, under LinkedIn */
+.contact-cards .desktop-only:last-child {
+  grid-column: 2;
 }
 
 .contact-card {
