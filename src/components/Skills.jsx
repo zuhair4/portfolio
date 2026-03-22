@@ -5,7 +5,7 @@ import {
   SiReact,
   SiAngular,
   SiHtml5,
-  SiCss3,
+  SiCss,
   SiNextdotjs,
   SiMongodb,
   SiPostgresql,
@@ -25,7 +25,7 @@ const skillCategories = [
       { name: 'React', icon: SiReact },
       { name: 'Angular', icon: SiAngular },
       { name: 'HTML5', icon: SiHtml5 },
-      { name: 'CSS3', icon: SiCss3 },
+      { name: 'CSS3', icon: SiCss },
       { name: 'Next.js', icon: SiNextdotjs }
       // 'TypeScript', 'JavaScript', 'React', 'Angular', 'HTML5 & CSS3' ,'Next.js'
     ]
