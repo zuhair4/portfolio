@@ -352,103 +352,172 @@ body.dark-theme .nav-menu a {
    ========================================== */
 
 .hero {
-  min-height: 95vh;
+  min-height: 100vh;
   display: flex;
   align-items: center;
   justify-content: center;
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 50%, #f093fb 100%);
-  background-size: 200% 200%;
-  animation: gradientShift 8s ease infinite;
+  background: #0a0a1a;
   color: white;
   padding: 2rem;
   position: relative;
   overflow: hidden;
 }
 
-/* Floating orbs behind hero */
-.hero::before {
-  content: '';
+body:not(.dark-theme) .hero {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 50%, #f093fb 100%);
+  background-size: 200% 200%;
+  animation: gradientShift 8s ease infinite;
+}
+
+/* --- Particle canvas --- */
+.hero-particles {
   position: absolute;
-  top: -100px;
-  right: -100px;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+  pointer-events: none;
+}
+
+/* --- Gradient mesh orbs --- */
+.hero-gradient-orbs {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.hero-orb {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(80px);
+}
+
+body:not(.dark-theme) .hero-orb {
+  display: none;
+}
+
+.hero-orb-1 {
+  width: 600px;
+  height: 600px;
+  background: radial-gradient(circle, rgba(102, 126, 234, 0.35) 0%, transparent 70%);
+  top: -20%;
+  left: -10%;
+  animation: meshFloat1 14s ease-in-out infinite;
+}
+
+.hero-orb-2 {
+  width: 500px;
+  height: 500px;
+  background: radial-gradient(circle, rgba(118, 75, 162, 0.3) 0%, transparent 70%);
+  bottom: -15%;
+  right: -10%;
+  animation: meshFloat2 18s ease-in-out infinite;
+}
+
+.hero-orb-3 {
   width: 400px;
   height: 400px;
-  background: rgba(255, 255, 255, 0.05);
-  border-radius: 50%;
-  animation: floatUp 6s ease-in-out infinite;
+  background: radial-gradient(circle, rgba(240, 147, 251, 0.2) 0%, transparent 70%);
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  animation: meshFloat3 12s ease-in-out infinite;
 }
 
-.hero::after {
-  content: '';
-  position: absolute;
-  bottom: -80px;
-  left: -80px;
-  width: 300px;
-  height: 300px;
-  background: rgba(255, 255, 255, 0.04);
-  border-radius: 50%;
-  animation: floatUp 8s ease-in-out infinite reverse;
-}
-
+/* --- Content layout --- */
 .hero-content {
   display: flex;
   align-items: center;
-  gap: 4rem;
+  gap: 5rem;
   max-width: var(--container-max);
   width: 100%;
   position: relative;
   z-index: 2;
+  will-change: transform;
 }
 
+/* --- Text side --- */
 .hero-text {
   flex: 1;
   text-align: left;
-  animation: slideInLeft 0.8s ease-out;
+  will-change: transform;
+  transition: transform 0.1s ease-out;
 }
 
-.hero-image {
-  display: flex;
-  justify-content: center;
+/* Status badge */
+.hero-badge {
+  display: inline-flex;
   align-items: center;
+  gap: 0.5rem;
+  padding: 0.45rem 1rem;
+  border-radius: 50px;
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  font-size: 0.8rem;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+  color: rgba(255, 255, 255, 0.9);
+  margin-bottom: 1.5rem;
+  animation: fadeInUp 0.8s ease-out 0.1s both;
 }
 
-/* Blob shape (fixed size) */
-.blob-frame {
-  width: 300px;
-  height: 360px;
-  overflow: hidden;
-  border-radius: 30% 70% 70% 30% / 30% 30% 70% 70%;
-  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.35), 0 0 40px rgba(102, 126, 234, 0.3);
-  animation: slideInRight 0.8s ease-out, glowPulse 4s ease-in-out infinite 1s;
-  position: relative;
+.badge-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #10b981;
+  box-shadow: 0 0 8px rgba(16, 185, 129, 0.6);
+  animation: dotPulse 2s ease-in-out infinite;
 }
 
-/* Image inside zooms */
-.blob-frame img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  transform: scale(1.70);
-}
-
+/* Split name */
 .hero-text h1 {
-  font-size: 3.5rem;
-  margin-bottom: 0.5rem;
-  font-weight: 700;
-  animation: fadeInUp 0.8s ease-out 0.2s both;
-  letter-spacing: -2px;
+  font-size: 4.5rem;
+  font-weight: 800;
+  line-height: 1.05;
+  margin-bottom: 1rem;
+  letter-spacing: -3px;
   color: white;
+}
+
+.hero-name-line {
+  display: block;
+  animation: fadeInUp 0.8s ease-out 0.2s both;
+}
+
+.hero-name-accent {
+  background: linear-gradient(135deg, #a5b4fc, #c084fc, #f0abfc);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  animation: fadeInUp 0.8s ease-out 0.35s both;
+}
+
+body:not(.dark-theme) .hero-name-accent {
+  background: linear-gradient(135deg, rgba(255,255,255,0.95), rgba(255,255,255,0.7));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
 }
 
 .hero-subtitle {
   font-size: 1.3rem;
   margin-bottom: 1.2rem;
   opacity: 0.95;
-  animation: fadeInUp 0.8s ease-out 0.4s both;
+  animation: fadeInUp 0.8s ease-out 0.45s both;
   font-weight: 500;
   letter-spacing: 0.5px;
   color: white;
   font-family: 'Fira Code', monospace;
+}
+
+.hero-role-prefix {
+  color: #10b981;
+  font-weight: 600;
 }
 
 /* Typewriter cursor */
@@ -463,12 +532,12 @@ body.dark-theme .nav-menu a {
 }
 
 .hero-description {
-  font-size: 1.1rem;
+  font-size: 1.05rem;
   margin-bottom: 2.5rem;
-  opacity: 0.85;
+  opacity: 0.7;
   line-height: 1.8;
-  animation: fadeInUp 0.8s ease-out 0.6s both;
-  max-width: 500px;
+  animation: fadeInUp 0.8s ease-out 0.55s both;
+  max-width: 480px;
   color: white;
 }
 
@@ -476,7 +545,12 @@ body.dark-theme .nav-menu a {
   display: flex;
   gap: 1rem;
   flex-wrap: wrap;
-  animation: fadeInUp 0.8s ease-out 0.8s both;
+  animation: fadeInUp 0.8s ease-out 0.65s both;
+}
+
+.hero-buttons .btn-primary {
+  display: inline-flex;
+  align-items: center;
 }
 
 .hero-contact {
@@ -494,6 +568,157 @@ body.dark-theme .nav-menu a {
 
 .hero-contact a:hover {
   opacity: 0.7;
+}
+
+/* --- Image side --- */
+.hero-image {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  will-change: transform;
+  transition: transform 0.1s ease-out;
+}
+
+.hero-img-wrapper {
+  position: relative;
+  animation: fadeInUp 1s ease-out 0.3s both;
+}
+
+/* Glow behind image */
+.hero-img-glow {
+  position: absolute;
+  inset: -30px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(168, 85, 247, 0.3) 0%, transparent 70%);
+  filter: blur(30px);
+  animation: glowPulse 4s ease-in-out infinite;
+  z-index: 0;
+}
+
+/* Animated gradient border */
+.hero-img-border {
+  position: relative;
+  padding: 4px;
+  border-radius: 30% 70% 70% 30% / 30% 30% 70% 70%;
+  background: linear-gradient(135deg, #667eea, #764ba2, #f093fb, #667eea);
+  background-size: 300% 300%;
+  animation: borderRotate 4s linear infinite;
+  z-index: 1;
+}
+
+@keyframes borderRotate {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+/* Blob shape */
+.blob-frame {
+  width: 300px;
+  height: 360px;
+  overflow: hidden;
+  border-radius: 30% 70% 70% 30% / 30% 30% 70% 70%;
+  position: relative;
+}
+
+.blob-frame img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transform: scale(1.70);
+}
+
+/* --- Orbiting dots --- */
+.orbit-ring {
+  position: absolute;
+  inset: -25px;
+  border-radius: 50%;
+  animation: orbitSpin 12s linear infinite;
+  z-index: 2;
+}
+
+.orbit-dot {
+  position: absolute;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  box-shadow: 0 0 12px currentColor;
+}
+
+.orbit-dot-1 {
+  top: 10%;
+  left: -5px;
+  background: #667eea;
+  color: #667eea;
+  animation: dotPulse 3s ease-in-out infinite;
+}
+
+.orbit-dot-2 {
+  bottom: 15%;
+  right: -5px;
+  background: #f093fb;
+  color: #f093fb;
+  animation: dotPulse 3s ease-in-out infinite 1s;
+}
+
+.orbit-dot-3 {
+  top: 50%;
+  right: -8px;
+  background: #10b981;
+  color: #10b981;
+  animation: dotPulse 3s ease-in-out infinite 2s;
+}
+
+@keyframes orbitSpin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+/* --- Scroll indicator --- */
+.hero-scroll-indicator {
+  position: absolute;
+  bottom: 2rem;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+  z-index: 5;
+  transition: opacity 0.3s ease;
+}
+
+.hero-scroll-indicator span {
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  letter-spacing: 3px;
+  color: rgba(255, 255, 255, 0.5);
+  font-weight: 600;
+}
+
+.scroll-line {
+  width: 1px;
+  height: 40px;
+  background: rgba(255, 255, 255, 0.15);
+  position: relative;
+  overflow: hidden;
+  border-radius: 1px;
+}
+
+.scroll-dot {
+  width: 3px;
+  height: 8px;
+  background: white;
+  border-radius: 3px;
+  position: absolute;
+  left: -1px;
+  animation: scrollDotMove 2s ease-in-out infinite;
+}
+
+@keyframes scrollDotMove {
+  0% { top: -8px; opacity: 0; }
+  30% { opacity: 1; }
+  100% { top: 40px; opacity: 0; }
 }
 
 /* ==========================================
@@ -2075,21 +2300,37 @@ body.dark-theme .footer {
     text-align: center;
   }
 
+  .hero-badge {
+    margin-left: auto;
+    margin-right: auto;
+  }
+
   .hero-image {
     width: 100%;
     max-width: 300px;
   }
 
   .hero-text h1 {
-    font-size: 2.5rem;
+    font-size: 3rem;
+    letter-spacing: -2px;
   }
 
   .hero-subtitle {
-    font-size: 1.1rem;
+    font-size: 1.05rem;
   }
 
   .hero-description {
-    font-size: 1rem;
+    font-size: 0.95rem;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .orbit-ring {
+    display: none;
+  }
+
+  .hero-scroll-indicator {
+    display: none;
   }
 
   .nav-menu {
@@ -2099,6 +2340,7 @@ body.dark-theme .footer {
 
   .hero-buttons {
     flex-direction: column;
+    align-items: center;
   }
 
   .btn {
@@ -2128,8 +2370,20 @@ body.dark-theme .footer {
   }
 
   .skills-stats-row {
-    gap: 1.5rem;
-    padding: 1.4rem 2rem;
+    gap: 1rem;
+    padding: 1.2rem 1rem;
+    max-width: calc(100% - 3rem);
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .stat-big {
+    font-size: 1.4rem;
+  }
+
+  .stat-small {
+    font-size: 0.65rem;
+    letter-spacing: 0.5px;
   }
 
   .projects-grid {
@@ -2232,9 +2486,7 @@ body.dark-theme .footer {
    ========================================== */
 
 body.dark-theme .hero {
-  background: linear-gradient(135deg, #1a1a3e 0%, #2d1b4e 50%, #1a1a2e 100%);
-  background-size: 200% 200%;
-  animation: gradientShift 8s ease infinite;
+  background: #0a0a1a;
 }
 
 body.dark-theme .hero-text h1,
