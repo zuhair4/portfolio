@@ -498,7 +498,7 @@ body:not(.dark-theme) .hero-orb {
 }
 
 body:not(.dark-theme) .hero-name-accent {
-  background: linear-gradient(135deg, rgba(255,255,255,0.95), rgba(255,255,255,0.7));
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.95), rgba(255, 255, 255, 0.7));
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
@@ -607,9 +607,17 @@ body:not(.dark-theme) .hero-name-accent {
 }
 
 @keyframes borderRotate {
-  0% { background-position: 0% 50%; }
-  50% { background-position: 100% 50%; }
-  100% { background-position: 0% 50%; }
+  0% {
+    background-position: 0% 50%;
+  }
+
+  50% {
+    background-position: 100% 50%;
+  }
+
+  100% {
+    background-position: 0% 50%;
+  }
 }
 
 /* Blob shape */
@@ -670,8 +678,13 @@ body:not(.dark-theme) .hero-name-accent {
 }
 
 @keyframes orbitSpin {
-  from { transform: rotate(0deg); }
-  to { transform: rotate(360deg); }
+  from {
+    transform: rotate(0deg);
+  }
+
+  to {
+    transform: rotate(360deg);
+  }
 }
 
 /* --- Scroll indicator --- */
@@ -716,9 +729,19 @@ body:not(.dark-theme) .hero-name-accent {
 }
 
 @keyframes scrollDotMove {
-  0% { top: -8px; opacity: 0; }
-  30% { opacity: 1; }
-  100% { top: 40px; opacity: 0; }
+  0% {
+    top: -8px;
+    opacity: 0;
+  }
+
+  30% {
+    opacity: 1;
+  }
+
+  100% {
+    top: 40px;
+    opacity: 0;
+  }
 }
 
 /* ==========================================
@@ -969,18 +992,39 @@ body:not(.dark-theme) .mesh-orb {
 }
 
 @keyframes meshFloat1 {
-  0%, 100% { transform: translate(0, 0) scale(1); }
-  50% { transform: translate(40px, -30px) scale(1.15); }
+
+  0%,
+  100% {
+    transform: translate(0, 0) scale(1);
+  }
+
+  50% {
+    transform: translate(40px, -30px) scale(1.15);
+  }
 }
 
 @keyframes meshFloat2 {
-  0%, 100% { transform: translate(0, 0) scale(1); }
-  50% { transform: translate(-35px, 25px) scale(1.1); }
+
+  0%,
+  100% {
+    transform: translate(0, 0) scale(1);
+  }
+
+  50% {
+    transform: translate(-35px, 25px) scale(1.1);
+  }
 }
 
 @keyframes meshFloat3 {
-  0%, 100% { transform: translate(0, 0) scale(1); }
-  50% { transform: translate(25px, -40px) scale(1.2); }
+
+  0%,
+  100% {
+    transform: translate(0, 0) scale(1);
+  }
+
+  50% {
+    transform: translate(25px, -40px) scale(1.2);
+  }
 }
 
 /* --- Header --- */
@@ -1086,13 +1130,23 @@ body:not(.dark-theme) .marquee-fade-right {
 }
 
 @keyframes marqueeScroll {
-  0% { transform: translateX(0); }
-  100% { transform: translateX(-33.333%); }
+  0% {
+    transform: translateX(0);
+  }
+
+  100% {
+    transform: translateX(-33.333%);
+  }
 }
 
 @keyframes marqueeScrollReverse {
-  0% { transform: translateX(-33.333%); }
-  100% { transform: translateX(0); }
+  0% {
+    transform: translateX(-33.333%);
+  }
+
+  100% {
+    transform: translateX(0);
+  }
 }
 
 /* --- Glassmorphic Skill Card --- */
@@ -1101,23 +1155,19 @@ body:not(.dark-theme) .marquee-fade-right {
   flex-shrink: 0;
   border-radius: 16px;
   padding: 2px;
-  background: linear-gradient(
-    135deg,
-    rgba(255, 255, 255, 0.15) 0%,
-    rgba(255, 255, 255, 0.05) 50%,
-    rgba(255, 255, 255, 0.15) 100%
-  );
+  background: linear-gradient(135deg,
+      rgba(255, 255, 255, 0.15) 0%,
+      rgba(255, 255, 255, 0.05) 50%,
+      rgba(255, 255, 255, 0.15) 100%);
   transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
   cursor: default;
 }
 
 body:not(.dark-theme) .marquee-card {
-  background: linear-gradient(
-    135deg,
-    rgba(102, 126, 234, 0.2) 0%,
-    rgba(118, 75, 162, 0.1) 50%,
-    rgba(240, 147, 251, 0.2) 100%
-  );
+  background: linear-gradient(135deg,
+      rgba(102, 126, 234, 0.2) 0%,
+      rgba(118, 75, 162, 0.1) 50%,
+      rgba(240, 147, 251, 0.2) 100%);
 }
 
 .marquee-card-inner {
@@ -1152,12 +1202,10 @@ body:not(.dark-theme) .marquee-card-inner {
 
 .marquee-card:hover {
   transform: translateY(-8px) scale(1.06);
-  background: linear-gradient(
-    135deg,
-    var(--skill-color) 0%,
-    rgba(255, 255, 255, 0.2) 50%,
-    var(--skill-color) 100%
-  );
+  background: linear-gradient(135deg,
+      var(--skill-color) 0%,
+      rgba(255, 255, 255, 0.2) 50%,
+      var(--skill-color) 100%);
   z-index: 5;
 }
 
@@ -2307,7 +2355,12 @@ body.dark-theme .footer {
 
   .hero-image {
     width: 100%;
-    max-width: 300px;
+    max-width: 200px;
+  }
+
+  .blob-frame {
+    width: 200px;
+    height: 240px;
   }
 
   .hero-text h1 {

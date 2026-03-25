@@ -159,11 +159,12 @@ export default function Hero() {
     return () => window.removeEventListener('scroll', handleScroll)
   }, [])
 
-  // Parallax offsets (subtle)
-  const textParallaxX = ((mousePos.x / (typeof window !== 'undefined' ? window.innerWidth : 1)) - 0.5) * -15
-  const textParallaxY = ((mousePos.y / (typeof window !== 'undefined' ? window.innerHeight : 1)) - 0.5) * -10
-  const imgParallaxX = ((mousePos.x / (typeof window !== 'undefined' ? window.innerWidth : 1)) - 0.5) * 20
-  const imgParallaxY = ((mousePos.y / (typeof window !== 'undefined' ? window.innerHeight : 1)) - 0.5) * 15
+  // Parallax offsets (disable on mobile)
+  const isMobile = typeof window !== 'undefined' && window.innerWidth <= 768
+  const textParallaxX = isMobile ? 0 : ((mousePos.x / window.innerWidth) - 0.5) * -15
+  const textParallaxY = isMobile ? 0 : ((mousePos.y / window.innerHeight) - 0.5) * -10
+  const imgParallaxX = isMobile ? 0 : ((mousePos.x / window.innerWidth) - 0.5) * 20
+  const imgParallaxY = isMobile ? 0 : ((mousePos.y / window.innerHeight) - 0.5) * 15
 
   return (
     <section
