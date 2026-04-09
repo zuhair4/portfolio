@@ -25,20 +25,21 @@ const projectsData = [
   },
   {
     id: 3,
-    title: 'iVaccinate',
-    description: 'A vaccination tracking and management platform',
-    preview: ivaccinateImage,
-    link: 'https://zuhair4.github.io/iVaccinate/',
-    tags: ['React', 'Web App', 'Healthcare']
-  },
-  {
-    id: 4,
     title: 'Udhaar Me Sudhaar',
     description: 'A law firm application that helps clients manage loans, track repayments, and handle related legal matters in one place.',
     preview: udhaarImage,
     link: 'https://zuhair4.github.io/udhaarMeSudhaar/',
     tags: ['HTML', 'CSS', 'JavaScript', 'Finance']
+  },
+  {
+    id: 4,
+    title: 'iVaccinate',
+    description: 'A vaccination tracking and management platform',
+    preview: ivaccinateImage,
+    link: 'https://zuhair4.github.io/iVaccinate/',
+    tags: ['React', 'Web App', 'Healthcare']
   }
+
 ]
 
 export default function Projects() {

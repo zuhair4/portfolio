@@ -75,7 +75,7 @@ export default function Skills() {
   const [ref, isInView] = useInView()
 
   return (
-    <section className={`skills ${isInView ? 'in-view' : ''}`} ref={ref}>
+    <section id="skills" className={`skills ${isInView ? 'in-view' : ''}`} ref={ref}>
       {/* Gradient mesh background */}
       <div className="skills-mesh">
         <div className="mesh-orb mesh-1"></div>
