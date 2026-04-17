@@ -13,6 +13,7 @@ const navLinks = [
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false)
   const [activeSection, setActiveSection] = useState('home')
+  const [scrolled, setScrolled] = useState(false)
   const { isDarkTheme, toggleTheme } = useTheme()
 
   const toggleMenu = () => {
@@ -23,9 +24,12 @@ export default function Navbar() {
     setIsOpen(false)
   }
 
-  // Scroll spy
+  // Scroll spy + collapse trigger
   useEffect(() => {
     const handleScroll = () => {
+      // Collapse logo after 60px
+      setScrolled(window.scrollY > 60)
+
       const sections = navLinks.map(link => document.getElementById(link.id)).filter(Boolean)
       const scrollPos = window.scrollY + 120
 
@@ -44,7 +48,16 @@ export default function Navbar() {
   return (
     <nav className="navbar">
       <div className="nav-container">
-        <div className="logo">ZA</div>
+
+        {/* Animated logo: "<ZuhairAbbas/>" → "<ZA/>" on scroll */}
+        <a href="#home" className={`logo logo-animated ${scrolled ? 'logo-collapsed' : ''}`}>
+          <span className="logo-bracket">&lt;</span>
+          <span className="logo-initial">Z</span>
+          <span className="logo-expand logo-first">uhair</span>
+          <span className="logo-initial">A</span>
+          <span className="logo-expand logo-last">bbas</span>
+          <span className="logo-bracket">/&gt;</span>
+        </a>
 
         <button className="theme-toggle" onClick={toggleTheme}>
           <span className="theme-icon"> {isDarkTheme ? '☀️' : '🌙'}</span>
