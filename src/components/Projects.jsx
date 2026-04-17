@@ -28,7 +28,7 @@ const projectsData = [
     title: 'Udhaar Me Sudhaar',
     description: 'A law firm application that helps clients manage loans, track repayments, and handle related legal matters in one place.',
     preview: udhaarImage,
-    link: 'https://zuhair4.github.io/udhaarMeSudhaar/',
+    link: 'https://udhaarmesudhaar.com/',
     tags: ['HTML', 'CSS', 'JavaScript', 'Finance']
   },
   {
