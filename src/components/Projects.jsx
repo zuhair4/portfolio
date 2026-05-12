@@ -45,6 +45,11 @@ const projectsData = [
 export default function Projects() {
   const [currentSlide, setCurrentSlide] = useState(0)
   const [ref, isInView] = useInView()
+  const [loadedImages, setLoadedImages] = useState({})
+
+  const handleImageLoad = (id) => {
+    setLoadedImages(prev => ({ ...prev, [id]: true }))
+  }
 
   const nextSlide = () => {
     setCurrentSlide((prev) => (prev + 1) % projectsData.length)
@@ -70,10 +75,12 @@ export default function Projects() {
             >
               {project.badge && <div className="project-badge">{project.badge}</div>}
               <div className="project-preview">
+                {!loadedImages[project.id] && <div className="skeleton skeleton-placeholder"></div>}
                 <img
                   src={project.preview}
                   alt={project.title}
-                  className="project-screenshot"
+                  onLoad={() => handleImageLoad(project.id)}
+                  className={`project-screenshot ${loadedImages[project.id] ? 'image-loaded' : 'image-loading'}`}
                 />
                 <div className="project-overlay">
                   <span className="view-link">View Project →</span>
@@ -102,10 +109,12 @@ export default function Projects() {
             >
               {project.badge && <div className="project-badge">{project.badge}</div>}
               <div className="project-preview">
+                {!loadedImages[project.id] && <div className="skeleton skeleton-placeholder"></div>}
                 <img
                   src={project.preview}
                   alt={project.title}
-                  className="project-screenshot"
+                  onLoad={() => handleImageLoad(project.id)}
+                  className={`project-screenshot ${loadedImages[project.id] ? 'image-loaded' : 'image-loading'}`}
                 />
                 <div className="project-overlay">
                   <span className="view-link">View Project →</span>

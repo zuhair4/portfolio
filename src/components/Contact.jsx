@@ -8,6 +8,11 @@ export default function Contact() {
   
   const [currentSlide, setCurrentSlide] = useState(0)
   const [ref, isInView] = useInView()
+  const [loadedImages, setLoadedImages] = useState({})
+
+  const handleImageLoad = (id) => {
+    setLoadedImages(prev => ({ ...prev, [id]: true }))
+  }
 
   const contactCards = [
     {
@@ -68,7 +73,13 @@ export default function Contact() {
             >
               {card.preview ? (
                 <div className='contact-preview-wrapper'>
-                <img src={card.preview} alt={card.title} className="contact-preview" />
+                {!loadedImages[card.id] && <div className="skeleton skeleton-placeholder"></div>}
+                <img 
+                  src={card.preview} 
+                  alt={card.title} 
+                  onLoad={() => handleImageLoad(card.id)}
+                  className={`contact-preview ${loadedImages[card.id] ? 'image-loaded' : 'image-loading'}`} 
+                />
                 <div className='contact-overlay'>
                   <span className='contact-link-text'>View →</span>
                 </div>
@@ -99,7 +110,13 @@ export default function Contact() {
             >
               {card.preview ? (
                 <div className='contact-preview-wrapper'>
-                <img src={card.preview} alt={card.title} className="contact-preview" />
+                {!loadedImages[card.id] && <div className="skeleton skeleton-placeholder"></div>}
+                <img 
+                  src={card.preview} 
+                  alt={card.title} 
+                  onLoad={() => handleImageLoad(card.id)}
+                  className={`contact-preview ${loadedImages[card.id] ? 'image-loaded' : 'image-loading'}`} 
+                />
                 <div className='contact-overlay'>
                   <span className='contact-link-text'>View →</span>
                 </div>

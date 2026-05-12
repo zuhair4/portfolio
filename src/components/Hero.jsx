@@ -117,6 +117,7 @@ export default function Hero() {
   const [isDeleting, setIsDeleting] = useState(false)
   const [mousePos, setMousePos] = useState({ x: 0, y: 0 })
   const [scrollY, setScrollY] = useState(0)
+  const [imgLoaded, setImgLoaded] = useState(false)
   const heroRef = useRef(null)
 
   // Typewriter effect
@@ -229,7 +230,13 @@ export default function Hero() {
             <div className="hero-img-glow"></div>
             <div className="hero-img-border">
               <div className="blob-frame">
-                <img src={profileImage} alt="Zuhair Abbas" />
+                {!imgLoaded && <div className="skeleton skeleton-placeholder"></div>}
+                <img 
+                  src={profileImage} 
+                  alt="Zuhair Abbas" 
+                  onLoad={() => setImgLoaded(true)}
+                  className={imgLoaded ? 'image-loaded' : 'image-loading'}
+                />
               </div>
             </div>
             {/* Orbiting shapes */}
