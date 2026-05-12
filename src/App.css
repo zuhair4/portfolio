@@ -435,6 +435,7 @@ body:not(.dark-theme) .hero {
   height: 100%;
   z-index: 1;
   pointer-events: none;
+  will-change: contents;
 }
 
 /* --- Gradient mesh orbs --- */
@@ -501,7 +502,7 @@ body:not(.dark-theme) .hero-orb {
   flex: 1;
   text-align: left;
   will-change: transform;
-  transition: transform 0.1s ease-out;
+  transform: translate3d(0, 0, 0);
 }
 
 /* Status badge */
@@ -634,7 +635,7 @@ body:not(.dark-theme) .hero-name-accent {
   justify-content: center;
   align-items: center;
   will-change: transform;
-  transition: transform 0.1s ease-out;
+  transform: translate3d(0, 0, 0);
 }
 
 .hero-img-wrapper {
@@ -872,7 +873,7 @@ body:not(.dark-theme) .hero-name-accent {
 
 section {
   padding: var(--section-padding);
-  transition: all 0.3s ease;
+  transition: color 0.3s ease, background 0.3s ease;
   position: relative;
   z-index: 1;
 }
@@ -3237,6 +3238,8 @@ body.dark-theme .footer {
 
   .hero-text {
     text-align: center;
+    transform: none !important;
+    will-change: auto;
   }
 
   .hero-badge {
@@ -3247,6 +3250,8 @@ body.dark-theme .footer {
   .hero-image {
     width: 100%;
     max-width: 200px;
+    transform: none !important;
+    will-change: auto;
   }
 
   .blob-frame {
@@ -3267,6 +3272,18 @@ body.dark-theme .footer {
     font-size: 0.95rem;
     margin-left: auto;
     margin-right: auto;
+  }
+
+  /* Reduce heavy blur on mobile for performance */
+  .hero-orb {
+    filter: blur(40px);
+    opacity: 0.25;
+  }
+
+  .hero-img-glow {
+    filter: blur(15px);
+    animation: none;
+    opacity: 0.3;
   }
 
   .orbit-ring {
