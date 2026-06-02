@@ -1,3 +1,5 @@
+import { useState, useRef, useCallback, useEffect, useMemo } from 'react'
+import { createPortal } from 'react-dom'
 import { useInView } from '../hooks/useInView'
 import {
   SiTypescript,
@@ -13,34 +15,277 @@ import {
 } from 'react-icons/si'
 
 import { FaBrain, FaRobot, FaLightbulb, FaCoins, FaServer, FaCode } from 'react-icons/fa'
+import { FiArrowUpRight } from 'react-icons/fi'
 
 const row1 = [
-  { name: 'TypeScript', icon: SiTypescript, color: '#3178c6' },
-  { name: 'React', icon: SiReact, color: '#61dafb' },
-  { name: 'Next.js', icon: SiNextdotjs, color: '#ffffff' },
-  { name: 'Angular', icon: SiAngular, color: '#dd0031' },
-  { name: 'Node.js', icon: FaServer, color: '#68a063' },
-  { name: 'MongoDB', icon: SiMongodb, color: '#47a248' },
-  { name: 'OpenAI', icon: SiOpenai, color: '#10a37f' },
-  { name: 'Claude AI', icon: FaRobot, color: '#d97706' },
-  { name: 'AI Agents', icon: FaBrain, color: '#a855f7' },
+  {
+    name: 'TypeScript',
+    icon: SiTypescript,
+    color: '#3178c6',
+    category: 'Language',
+    level: 90,
+    description:
+      'A strongly typed superset of JavaScript that adds static types — catching errors early and scaling codebases with confidence.',
+    link: 'https://www.typescriptlang.org/',
+  },
+  {
+    name: 'React',
+    icon: SiReact,
+    color: '#61dafb',
+    category: 'Frontend',
+    level: 90,
+    description:
+      'A component-based library for building fast, interactive user interfaces with a declarative, reusable architecture.',
+    link: 'https://react.dev/',
+  },
+  {
+    name: 'Next.js',
+    icon: SiNextdotjs,
+    color: '#ffffff',
+    category: 'Framework',
+    level: 80,
+    description:
+      'A React framework for production with server-side rendering, static generation, and full-stack capabilities.',
+    link: 'https://nextjs.org/',
+  },
+  {
+    name: 'Angular',
+    icon: SiAngular,
+    color: '#dd0031',
+    category: 'Frontend',
+    level: 95,
+    description:
+      'A comprehensive TypeScript framework for building scalable, enterprise-grade single-page applications.',
+    link: 'https://angular.dev/',
+  },
+  {
+    name: 'Node.js',
+    icon: FaServer,
+    color: '#68a063',
+    category: 'Backend',
+    level: 82,
+    description:
+      "A JavaScript runtime built on Chrome's V8 engine for building fast, scalable server-side applications.",
+    link: 'https://nodejs.org/',
+  },
+  {
+    name: 'MongoDB',
+    icon: SiMongodb,
+    color: '#47a248',
+    category: 'Database',
+    level: 80,
+    description:
+      'A flexible NoSQL document database that stores data in JSON-like documents for rapid, schema-less development.',
+    link: 'https://www.mongodb.com/',
+  },
+  {
+    name: 'OpenAI',
+    icon: SiOpenai,
+    color: '#10a37f',
+    category: 'AI / ML',
+    level: 90,
+    description:
+      'Industry-leading GPT models and APIs for integrating powerful language, vision, and reasoning into applications.',
+    link: 'https://platform.openai.com/docs',
+  },
+  {
+    name: 'Claude AI',
+    icon: FaRobot,
+    color: '#d97706',
+    category: 'AI / ML',
+    level: 92,
+    description:
+      "Anthropic's family of safe, capable AI assistants for building agents, tools, and conversational experiences.",
+    link: 'https://docs.anthropic.com/',
+  },
+  {
+    name: 'AI Agents',
+    icon: FaBrain,
+    color: '#a855f7',
+    category: 'AI / ML',
+    level: 87,
+    description:
+      'Autonomous systems that reason, plan, and use tools to accomplish complex multi-step tasks with minimal supervision.',
+    link: 'https://docs.anthropic.com/en/docs/agents-and-tools/overview',
+  },
 ]
 
 const row2 = [
-  { name: 'JavaScript', icon: SiJavascript, color: '#f7df1e' },
-  { name: 'HTML5', icon: SiHtml5, color: '#e34f26' },
-  { name: 'CSS3', icon: FaCode, color: '#264de4' },
-  { name: 'PostgreSQL', icon: SiPostgresql, color: '#336791' },
-  { name: 'Firebase', icon: SiFirebase, color: '#ffca28' },
-  { name: 'REST APIs', icon: FaCoins, color: '#667eea' },
-  { name: 'Prompt Eng.', icon: FaLightbulb, color: '#f59e0b' },
-  { name: 'Vibe Coding', icon: FaCoins, color: '#ec4899' },
-  { name: 'Token Mgmt', icon: FaServer, color: '#06b6d4' },
+  {
+    name: 'JavaScript',
+    icon: SiJavascript,
+    color: '#f7df1e',
+    category: 'Language',
+    level: 93,
+    description:
+      'The language of the web — powering dynamic, interactive experiences across every modern browser and runtime.',
+    link: 'https://developer.mozilla.org/en-US/docs/Web/JavaScript',
+  },
+  {
+    name: 'HTML5',
+    icon: SiHtml5,
+    color: '#e34f26',
+    category: 'Frontend',
+    level: 91,
+    description:
+      'The semantic backbone of the web — structuring content with accessible, modern markup standards.',
+    link: 'https://developer.mozilla.org/en-US/docs/Web/HTML',
+  },
+  {
+    name: 'CSS3',
+    icon: FaCode,
+    color: '#264de4',
+    category: 'Frontend',
+    level: 90,
+    description:
+      'The styling engine of the web — layouts, animations, and responsive design with Grid, Flexbox, and modern features.',
+    link: 'https://developer.mozilla.org/en-US/docs/Web/CSS',
+  },
+  {
+    name: 'PostgreSQL',
+    icon: SiPostgresql,
+    color: '#336791',
+    category: 'Database',
+    level: 80,
+    description:
+      'A powerful, open-source relational database known for reliability, extensibility, and SQL standards compliance.',
+    link: 'https://www.postgresql.org/',
+  },
+  {
+    name: 'Firebase',
+    icon: SiFirebase,
+    color: '#ffca28',
+    category: 'Backend',
+    level: 83,
+    description:
+      "Google's app platform offering real-time databases, authentication, hosting, and serverless functions.",
+    link: 'https://firebase.google.com/',
+  },
+  {
+    name: 'REST APIs',
+    icon: FaCoins,
+    color: '#667eea',
+    category: 'Backend',
+    level: 90,
+    description:
+      'An architectural style for designing networked applications using stateless, resource-based HTTP endpoints.',
+    link: 'https://developer.mozilla.org/en-US/docs/Glossary/REST',
+  },
+  {
+    name: 'Prompt Eng.',
+    icon: FaLightbulb,
+    color: '#f59e0b',
+    category: 'AI / ML',
+    level: 88,
+    description:
+      'The craft of designing effective prompts to guide LLMs toward accurate, reliable, and useful outputs.',
+    link: 'https://docs.anthropic.com/en/docs/build-with-claude/prompt-engineering/overview',
+  },
+  {
+    name: 'Vibe Coding',
+    icon: FaCoins,
+    color: '#ec4899',
+    category: 'Workflow',
+    level: 90,
+    description:
+      'An AI-assisted, flow-state approach to building software by collaborating with intelligent coding agents.',
+    link: 'https://www.anthropic.com/claude-code',
+  },
+  {
+    name: 'Token Mgmt',
+    icon: FaServer,
+    color: '#06b6d4',
+    category: 'AI / ML',
+    level: 90,
+    description:
+      'Optimizing context windows and token usage to balance cost, speed, and quality in LLM-powered applications.',
+    link: 'https://docs.anthropic.com/en/docs/build-with-claude/token-counting',
+  },
 ]
 
-function MarqueeRow({ skills, direction = 'left', speed = 35 }) {
-  // Duplicate items 3x for seamless infinite scroll
-  const items = [...skills, ...skills, ...skills]
+/* ---------- Hover Popup (rendered via portal) ---------- */
+function SkillPopup({ data, onMouseEnter, onMouseLeave }) {
+  const { skill, rect } = data
+  const Icon = skill.icon
+
+  // Position: centered above the card, flipping below if near the top edge.
+  const POPUP_WIDTH = Math.min(300, window.innerWidth - 24)
+  const GAP = 16
+  const placeBelow = rect.top < 260
+  const centerX = rect.left + rect.width / 2
+
+  let left = centerX - POPUP_WIDTH / 2
+  // Keep within viewport horizontally
+  const margin = 12
+  left = Math.max(margin, Math.min(left, window.innerWidth - POPUP_WIDTH - margin))
+
+  const arrowOffset = centerX - left // arrow points at card center
+
+  const style = {
+    position: 'fixed',
+    left: `${left}px`,
+    width: `${POPUP_WIDTH}px`,
+    '--skill-color': skill.color,
+    '--arrow-x': `${arrowOffset}px`,
+    zIndex: 9999,
+  }
+
+  if (placeBelow) {
+    style.top = `${rect.bottom + GAP}px`
+  } else {
+    style.top = `${rect.top - GAP}px`
+    style.transform = 'translateY(-100%)'
+  }
+
+  return createPortal(
+    <div
+      className={`skill-popup ${placeBelow ? 'popup-below' : 'popup-above'}`}
+      style={style}
+      role="tooltip"
+      onMouseEnter={onMouseEnter}
+      onMouseLeave={onMouseLeave}
+    >
+      <div className="skill-popup-glow" />
+      <div className="skill-popup-header">
+        <div className="skill-popup-icon">
+          <Icon />
+        </div>
+        <div className="skill-popup-titles">
+          <span className="skill-popup-name">{skill.name}</span>
+          <span className="skill-popup-category">{skill.category}</span>
+        </div>
+      </div>
+
+      <p className="skill-popup-desc">{skill.description}</p>
+
+      <div className="skill-popup-meter">
+        <div className="skill-popup-meter-head">
+          <span>Proficiency</span>
+          <span>{skill.level}%</span>
+        </div>
+        <div className="skill-popup-bar">
+          <div className="skill-popup-bar-fill" style={{ width: `${skill.level}%` }} />
+        </div>
+      </div>
+
+      <a
+        className="skill-popup-link"
+        href={skill.link}
+        target="_blank"
+        rel="noopener noreferrer"
+      >
+        Learn more
+        <FiArrowUpRight />
+      </a>
+      <span className="skill-popup-arrow" />
+    </div>,
+    document.body
+  )
+}
+
+function MarqueeRow({ skills, direction = 'left', speed = 35, onCardEnter, onCardLeave }) {
+  // Memoize so the 27-item array isn't recreated on every render
+  const items = useMemo(() => [...skills, ...skills, ...skills], [skills])
 
   return (
     <div className="marquee-row">
@@ -55,6 +300,11 @@ function MarqueeRow({ skills, direction = 'left', speed = 35 }) {
               key={idx}
               className="marquee-card"
               style={{ '--skill-color': skill.color }}
+              onMouseEnter={(e) => onCardEnter(skill, e.currentTarget)}
+              onMouseLeave={onCardLeave}
+              tabIndex={0}
+              onFocus={(e) => onCardEnter(skill, e.currentTarget)}
+              onBlur={onCardLeave}
             >
               <div className="marquee-card-glow"></div>
               <div className="marquee-card-inner">
@@ -73,6 +323,45 @@ function MarqueeRow({ skills, direction = 'left', speed = 35 }) {
 
 export default function Skills() {
   const [ref, isInView] = useInView()
+  const [active, setActive] = useState(null) // { skill, rect }
+  const closeTimer = useRef(null)
+
+  const clearCloseTimer = () => {
+    if (closeTimer.current) {
+      clearTimeout(closeTimer.current)
+      closeTimer.current = null
+    }
+  }
+
+  const handleCardEnter = useCallback((skill, el) => {
+    clearCloseTimer()
+    setActive({ skill, rect: el.getBoundingClientRect() })
+  }, [])
+
+  const handleCardLeave = useCallback(() => {
+    clearCloseTimer()
+    closeTimer.current = setTimeout(() => setActive(null), 140)
+  }, [])
+
+  const handlePopupEnter = useCallback(() => clearCloseTimer(), [])
+  const handlePopupLeave = useCallback(() => {
+    clearCloseTimer()
+    closeTimer.current = setTimeout(() => setActive(null), 140)
+  }, [])
+
+  // Dismiss on scroll/resize since the fixed popup would otherwise detach.
+  useEffect(() => {
+    if (!active) return
+    const dismiss = () => setActive(null)
+    window.addEventListener('scroll', dismiss, true)
+    window.addEventListener('resize', dismiss)
+    return () => {
+      window.removeEventListener('scroll', dismiss, true)
+      window.removeEventListener('resize', dismiss)
+    }
+  }, [active])
+
+  useEffect(() => () => clearCloseTimer(), [])
 
   return (
     <section id="skills" className={`skills ${isInView ? 'in-view' : ''}`} ref={ref}>
@@ -88,15 +377,28 @@ export default function Skills() {
         <h2>Skills & Technologies</h2>
         <p className="skills-subtitle">
           The tools and technologies I use to bring ideas to life
+          <span className="skills-hint"> — hover a skill to learn more</span>
         </p>
       </div>
 
       {/* Marquee rows */}
-      <div className="skills-marquee-wrap">
+      <div className={`skills-marquee-wrap ${active ? 'popup-open' : ''}`}>
         <div className="marquee-fade marquee-fade-left"></div>
         <div className="marquee-fade marquee-fade-right"></div>
-        <MarqueeRow skills={row1} direction="left" speed={40} />
-        <MarqueeRow skills={row2} direction="right" speed={45} />
+        <MarqueeRow
+          skills={row1}
+          direction="left"
+          speed={40}
+          onCardEnter={handleCardEnter}
+          onCardLeave={handleCardLeave}
+        />
+        <MarqueeRow
+          skills={row2}
+          direction="right"
+          speed={45}
+          onCardEnter={handleCardEnter}
+          onCardLeave={handleCardLeave}
+        />
       </div>
 
       {/* Bottom stat line */}
@@ -118,6 +420,14 @@ export default function Skills() {
           </div>
         </div>
       </div>
+
+      {active && (
+        <SkillPopup
+          data={active}
+          onMouseEnter={handlePopupEnter}
+          onMouseLeave={handlePopupLeave}
+        />
+      )}
     </section>
   )
 }

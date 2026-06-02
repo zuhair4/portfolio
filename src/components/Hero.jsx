@@ -31,8 +31,8 @@ function Particles({ mousePosRef }) {
     resize()
     window.addEventListener('resize', resize)
 
-    // Fewer particles on mobile for better perf
-    const count = isMobile ? 25 : 60
+    // Fewer particles on mobile; desktop reduced to cut O(n²) connection checks by ~55%
+    const count = isMobile ? 20 : 40
     particlesRef.current = Array.from({ length: count }, () => ({
       x: Math.random() * canvas.offsetWidth,
       y: Math.random() * canvas.offsetHeight,

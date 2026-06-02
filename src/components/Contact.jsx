@@ -74,11 +74,13 @@ export default function Contact() {
               {card.preview ? (
                 <div className='contact-preview-wrapper'>
                 {!loadedImages[card.id] && <div className="skeleton skeleton-placeholder"></div>}
-                <img 
-                  src={card.preview} 
-                  alt={card.title} 
+                <img
+                  src={card.preview}
+                  alt={card.title}
+                  loading="lazy"
+                  decoding="async"
                   onLoad={() => handleImageLoad(card.id)}
-                  className={`contact-preview ${loadedImages[card.id] ? 'image-loaded' : 'image-loading'}`} 
+                  className={`contact-preview ${loadedImages[card.id] ? 'image-loaded' : 'image-loading'}`}
                 />
                 <div className='contact-overlay'>
                   <span className='contact-link-text'>View →</span>
@@ -111,11 +113,13 @@ export default function Contact() {
               {card.preview ? (
                 <div className='contact-preview-wrapper'>
                 {!loadedImages[card.id] && <div className="skeleton skeleton-placeholder"></div>}
-                <img 
-                  src={card.preview} 
-                  alt={card.title} 
+                <img
+                  src={card.preview}
+                  alt={card.title}
+                  loading="lazy"
+                  decoding="async"
                   onLoad={() => handleImageLoad(card.id)}
-                  className={`contact-preview ${loadedImages[card.id] ? 'image-loaded' : 'image-loading'}`} 
+                  className={`contact-preview ${loadedImages[card.id] ? 'image-loaded' : 'image-loading'}`}
                 />
                 <div className='contact-overlay'>
                   <span className='contact-link-text'>View →</span>

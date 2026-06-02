@@ -79,6 +79,8 @@ export default function Projects() {
                 <img
                   src={project.preview}
                   alt={project.title}
+                  loading="lazy"
+                  decoding="async"
                   onLoad={() => handleImageLoad(project.id)}
                   className={`project-screenshot ${loadedImages[project.id] ? 'image-loaded' : 'image-loading'}`}
                 />
@@ -113,6 +115,8 @@ export default function Projects() {
                 <img
                   src={project.preview}
                   alt={project.title}
+                  loading="lazy"
+                  decoding="async"
                   onLoad={() => handleImageLoad(project.id)}
                   className={`project-screenshot ${loadedImages[project.id] ? 'image-loaded' : 'image-loading'}`}
                 />

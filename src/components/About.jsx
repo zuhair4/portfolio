@@ -130,17 +130,25 @@ function FloatingIcons({ inView }) {
 
 export default function About() {
   const [ref, isInView] = useInView()
-  const [mousePos, setMousePos] = useState({ x: 0.5, y: 0.5 })
   const sectionRef = useRef(null)
+  const gradientMeshRef = useRef(null)
+  const rafRef = useRef(null)
 
+  // RAF-throttled: CSS vars update at most once per frame, no React re-renders
   const handleMouseMove = useCallback((e) => {
-    if (!sectionRef.current) return
-    const rect = sectionRef.current.getBoundingClientRect()
-    setMousePos({
-      x: (e.clientX - rect.left) / rect.width,
-      y: (e.clientY - rect.top) / rect.height,
+    if (!sectionRef.current || !gradientMeshRef.current || rafRef.current) return
+    const { clientX, clientY } = e
+    rafRef.current = requestAnimationFrame(() => {
+      const rect = sectionRef.current?.getBoundingClientRect()
+      if (rect && gradientMeshRef.current) {
+        gradientMeshRef.current.style.setProperty('--mouse-x', (clientX - rect.left) / rect.width)
+        gradientMeshRef.current.style.setProperty('--mouse-y', (clientY - rect.top) / rect.height)
+      }
+      rafRef.current = null
     })
   }, [])
+
+  useEffect(() => () => { if (rafRef.current) cancelAnimationFrame(rafRef.current) }, [])
 
   const mergedRef = useCallback((node) => {
     ref.current = node
@@ -157,10 +165,7 @@ export default function About() {
       {/* Animated gradient mesh background */}
       <div
         className="about-gradient-mesh"
-        style={{
-          '--mouse-x': mousePos.x,
-          '--mouse-y': mousePos.y,
-        }}
+        ref={gradientMeshRef}
       >
         <div className="about-mesh-orb about-mesh-orb-1"></div>
         <div className="about-mesh-orb about-mesh-orb-2"></div>

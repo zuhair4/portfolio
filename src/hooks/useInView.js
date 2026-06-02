@@ -3,17 +3,18 @@ import { useEffect, useRef, useState } from 'react'
 export const useInView = (options = {}) => {
   const ref = useRef(null)
   const [isInView, setIsInView] = useState(false)
+  // Hold options in a ref so they don't re-trigger the effect on every render
+  const optionsRef = useRef(options)
 
   useEffect(() => {
     const observer = new IntersectionObserver(([entry]) => {
       if (entry.isIntersecting) {
         setIsInView(true)
-        // Stop observing once element is in view
         observer.unobserve(entry.target)
       }
     }, {
       threshold: 0.1,
-      ...options
+      ...optionsRef.current
     })
 
     if (ref.current) {
@@ -25,7 +26,7 @@ export const useInView = (options = {}) => {
         observer.unobserve(ref.current)
       }
     }
-  }, [options])
+  }, []) // stable — runs once on mount only
 
   return [ref, isInView]
 }
