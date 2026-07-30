@@ -401,7 +401,56 @@ export default function Skills() {
         />
       </div>
 
+      {/* AI Certifications */}
+      <div className="container">
+        <div className="skills-certs-row">
+          <a
+            href="https://www.credly.com/badges/15e87db5-9c67-4d7b-bf44-2dae7dcdd0f3/public_url"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="cert-card"
+            aria-label="Claude Certified Architect – Foundations on Credly"
+          >
+            {/* Badge icon area */}
+            <div className="cert-badge-icon">
+              {/* Anthropic starburst */}
+              <svg viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg" className="cert-anthropic-svg" aria-hidden="true">
+                <circle cx="32" cy="32" r="32" fill="#d97706" opacity="0.15" />
+                <g transform="translate(12, 12) scale(0.625)">
+                  <path d="M32 6 L34.5 22 L48 14 L38 26 L54 28.5 L38 31 L48 43 L34.5 35 L32 51 L29.5 35 L16 43 L26 31 L10 28.5 L26 26 L16 14 L29.5 22 Z" fill="#d97706"/>
+                </g>
+              </svg>
+              <span className="cert-verified-dot" aria-hidden="true" />
+            </div>
+
+            {/* Text content */}
+            <div className="cert-content">
+              <div className="cert-meta">
+                <span className="cert-issuer">Anthropic</span>
+                <span className="cert-dot" aria-hidden="true">·</span>
+                <span className="cert-type">Certification</span>
+              </div>
+              <h3 className="cert-name">Claude Certified Architect<span className="cert-tier"> – Foundations</span></h3>
+              <p className="cert-skills-label">AI System Design · Claude Agent SDK · MCP · Prompt Engineering</p>
+            </div>
+
+            {/* Right: dates + verify CTA */}
+            <div className="cert-right">
+              <div className="cert-dates">
+                <span className="cert-issued">Issued Jul 2026</span>
+                <span className="cert-expires">Expires Jul 2027</span>
+              </div>
+              <span className="cert-verify-btn">
+                Verify
+                <FiArrowUpRight />
+              </span>
+            </div>
+          </a>
+        </div>
+      </div>
+
       {/* Bottom stat line */}
+
       <div className="container">
         <div className="skills-stats-row">
           <div className="skills-stat">
