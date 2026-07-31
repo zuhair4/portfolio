@@ -11,8 +11,8 @@ import {
   SiMongodb,
   SiPostgresql,
   SiFirebase,
-  SiOpenai,
 } from 'react-icons/si'
+import { RiOpenaiFill } from 'react-icons/ri'
 
 import { FaBrain, FaRobot, FaLightbulb, FaCoins, FaServer, FaCode } from 'react-icons/fa'
 import { FiArrowUpRight } from 'react-icons/fi'
@@ -80,7 +80,7 @@ const row1 = [
   },
   {
     name: 'OpenAI',
-    icon: SiOpenai,
+    icon: RiOpenaiFill,
     color: '#10a37f',
     category: 'AI / ML',
     level: 90,
