@@ -23,6 +23,25 @@ export default function Navbar() {
   const toggleMenu = () => setIsOpen(prev => !prev)
   const closeMenu = () => setIsOpen(false)
 
+  const handleNavClick = (e, id) => {
+    e.preventDefault()
+    closeMenu()
+    setActiveSection(id)
+    if (id === 'home') {
+      window.scrollTo({ top: 0, behavior: 'smooth' })
+    } else {
+      const element = document.getElementById(id)
+      if (element) {
+        const navOffset = 70
+        const elementPosition = element.getBoundingClientRect().top + window.scrollY
+        window.scrollTo({
+          top: elementPosition - navOffset,
+          behavior: 'smooth',
+        })
+      }
+    }
+  }
+
   const handleResumeDownload = () => {
     if (downloaded) return
     setDownloaded(true)
@@ -74,12 +93,16 @@ export default function Navbar() {
       <div className="nav-container" ref={navContainerRef}>
 
         {/* Animated logo: "<ZuhairAbbas/>" → "<ZA/>" on scroll */}
-        <a href="#home" className={`logo logo-animated ${scrolled ? 'logo-collapsed' : ''}`}>
+        <a
+          href="#home"
+          className={`logo logo-animated ${scrolled ? 'logo-collapsed' : ''}`}
+          onClick={(e) => handleNavClick(e, 'home')}
+        >
           <span className="logo-bracket">&lt;</span>
           <span className="logo-initial">Z</span>
           <span className="logo-expand logo-first">uhair</span>
           <span className="logo-initial">A</span>
-          <span className="logo-expand logo-last">bbas</span>
+          <span className="logo-expand">bbas</span>
           <span className="logo-bracket">/&gt;</span>
         </a>
 
@@ -90,7 +113,7 @@ export default function Navbar() {
               <a
                 href={`#${link.id}`}
                 className={activeSection === link.id ? 'active' : ''}
-                onClick={closeMenu}
+                onClick={(e) => handleNavClick(e, link.id)}
               >
                 {link.label}
               </a>
