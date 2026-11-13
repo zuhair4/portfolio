@@ -1,10 +1,10 @@
 import { useState, useEffect, useRef } from 'react'
 import { useInView } from '../hooks/useInView'
 import cafeImage from '../../assets/Cafe.png'
-import ivaccinateImage from '../../assets/ivaccinate.png'
 import hashedinImage from '../../assets/Hashedin.png'
 import udhaarImage from '../../assets/udhaar ss.png'
 import moinMalikImage from '../../assets/THEMOINMALIK.png'
+import mcpToolkitImage from '../../assets/mcp-toolkit.png'
 
 const projectsData = [
   {
@@ -24,16 +24,16 @@ const projectsData = [
   {
     id: 2,
     number: '02',
-    title: 'THEMOINMALIK Dairy',
-    category: 'B2B Wholesale & Supply Portal',
-    badge: 'B2B Platform',
-    description: 'A dedicated commercial dairy fulfillment portal designed for professional kitchens and restaurants, featuring direct batch fulfillment, dynamic product filtering, and instant on-demand ordering.',
-    highlights: ['Real-time Catalog Filter', 'Batch Commercial Ordering', 'Responsive Kitchen Portal'],
-    preview: moinMalikImage,
-    link: 'https://zuhair4.github.io/THEMOINMALIK/',
-    displayUrl: 'zuhair4.github.io/THEMOINMALIK',
-    tags: ['React', 'B2B E-Commerce', 'JavaScript', 'Responsive UI', 'Modern CSS'],
-    accentColor: '#10b981'
+    title: 'MCP Toolkit',
+    category: 'AI Protocol & DevTools',
+    badge: 'AI Protocol Tool',
+    description: 'An advanced diagnostic scanner and probe for Model Context Protocol (MCP) endpoints, evaluating OAuth dynamic client registration (DCR), client ID metadata documents (CIMD), and authorization discovery across AI connectors.',
+    highlights: ['OAuth Discovery & DCR Probe', 'CIMD & Protocol Diagnostics', 'Batch Scanner & CSV Export'],
+    preview: mcpToolkitImage,
+    link: 'https://scrapper-probe-tool-6lqa.vercel.app/',
+    displayUrl: 'scrapper-probe-tool-6lqa.vercel.app',
+    tags: ['Model Context Protocol', 'OAuth 2.0 / DCR', 'React', 'DevTools', 'Security'],
+    accentColor: '#06b6d4'
   },
   {
     id: 3,
@@ -52,16 +52,16 @@ const projectsData = [
   {
     id: 4,
     number: '04',
-    title: 'iVaccinate',
-    category: 'Digital Healthcare Platform',
-    badge: 'HealthTech',
-    description: 'A modern healthcare tracking platform designed for managing vaccination schedules, dose reminders, and immunization history for families and clinical providers.',
-    highlights: ['Vaccination Timeline Tracking', 'Smart Dose Schedule', 'Automated Record Keeping'],
-    preview: ivaccinateImage,
-    link: 'https://zuhair4.github.io/iVaccinate/',
-    displayUrl: 'zuhair4.github.io/iVaccinate',
-    tags: ['React', 'Healthcare', 'State Management', 'UI/UX Design'],
-    accentColor: '#8b5cf6'
+    title: 'THEMOINMALIK Dairy',
+    category: 'B2B Wholesale & Supply Portal',
+    badge: 'B2B Platform',
+    description: 'A dedicated commercial dairy fulfillment portal designed for professional kitchens and restaurants, featuring direct batch fulfillment, dynamic product filtering, and instant on-demand ordering.',
+    highlights: ['Real-time Catalog Filter', 'Batch Commercial Ordering', 'Responsive Kitchen Portal'],
+    preview: moinMalikImage,
+    link: 'https://zuhair4.github.io/THEMOINMALIK/',
+    displayUrl: 'zuhair4.github.io/THEMOINMALIK',
+    tags: ['React', 'B2B E-Commerce', 'JavaScript', 'Responsive UI', 'Modern CSS'],
+    accentColor: '#10b981'
   },
   {
     id: 5,
